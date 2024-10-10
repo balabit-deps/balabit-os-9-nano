@@ -1,7 +1,8 @@
 Source: nano
 Section: editors
 Priority: optional
-Maintainer: Jordi Mallach <jordi@debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Jordi Mallach <jordi@debian.org>
 Uploaders: Steve Langasek <vorlon@debian.org>
 Build-Depends: debhelper-compat (= 13),
                libncurses-dev,

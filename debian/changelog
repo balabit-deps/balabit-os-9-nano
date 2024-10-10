@@ -1,3 +1,15 @@
+nano (6.2-1ubuntu0.1) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Emergency file could be replaced by a malicious symlink.
+    - debian/patches/CVE-2024-5742.patch: Use fchmod and fchown in write_file()
+      in src/files.c instead of using chmod and chown in emergency_save() in
+      src/nano.c. Add EMERGENCY write type in kind_of_writing_type enum in
+      src/definitions.h. Update fd in write_file() in src/files.c. Based on
+      upstream.
+    - CVE-2024-5742
+
+ -- Hlib Korzhynskyy <hlib.korzhynskyy@canonical.com>  Thu, 10 Oct 2024 11:09:30 -0230
+
 nano (6.2-1) unstable; urgency=medium
 
   * The "Priviet" release.
