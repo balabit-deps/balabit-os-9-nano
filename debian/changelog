@@ -1,3 +1,16 @@
+nano (6.2-1ubuntu0.2) jammy-security; urgency=medium
+
+  * SECURITY UPDATE: Incorrect permission assignment.
+    - debian/patches/CVE-2026-6842.patch: Create ~/.local with correct
+      permissions in src/history.c.
+    - CVE-2026-6842
+  * SECURITY UPDATE: Denial of service in redecorate_after_switch
+    - debian/patches/CVE-2026-6843.patch: Escape error message to avoid
+      content being interpreted as format specifiers in src/files.c
+    - CVE-2026-6843
+
+ -- Kyle Kernick <kyle.kernick@canonical.com>  Wed, 03 Jun 2026 16:51:38 -0600
+
 nano (6.2-1ubuntu0.1) jammy-security; urgency=medium
 
   * SECURITY UPDATE: Emergency file could be replaced by a malicious symlink.
