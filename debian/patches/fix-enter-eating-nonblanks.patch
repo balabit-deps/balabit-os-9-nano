@@ -1,0 +1,39 @@
+From 4d6a0c7c10bd659dee3c8930a0ed180c32355d15 Mon Sep 17 00:00:00 2001
+From: Benno Schulenberg <bensberg@telfort.nl>
+Date: Thu, 24 Nov 2022 15:51:43 +0100
+Subject: [PATCH] text: upon Enter, eat only lefthand blanks, not any other
+ characters
+
+Make sure that there is only whitespace to the left of the cursor
+before setting 'allblanks' to TRUE, because this latter value will
+cause these characters to be eaten (as a special case, to avoid
+creating lines that contain only blanks when both --autoindent
+and --breaklonglines are on).
+
+This fixes https://savannah.gnu.org/bugs/?63407.
+Reported-by: Tasos Papastylianou <tpapastylianou@hotmail.com>
+
+Bug existed since version 2.9.8, commit d00ab406.
+Origin: vendor, https://launchpadlibrarian.net/637160835/0001-text-upon-Enter-eat-only-lefthand-blanks-not-any-oth.patch
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/nano/+bug/1998592
+Last-Update: 2026-07-14
+---
+ src/text.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/text.c b/src/text.c
+index 85d1bd40..ed9fc9ad 100644
+--- a/src/text.c
++++ b/src/text.c
+@@ -857,7 +857,7 @@ void do_enter(void)
+ 		if (extra > openfile->current_x)
+ 			extra = openfile->current_x;
+ 		else if (extra == openfile->current_x)
+-			allblanks = TRUE;
++			allblanks = (indent_length(openfile->current->data) == extra);
+ 	}
+ #endif /* NANO_TINY */
+ 	newnode->data = nmalloc(strlen(openfile->current->data +
+-- 
+2.37.4
+
